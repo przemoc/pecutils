@@ -1,0 +1,63 @@
+pecutils  --  peculiar utilities  for all your weird needs
+==========================================================
+
+Enjoy some of these fine utils for extreme use cases:
+
+- inpuho - input hole
+
+More oddities coming (hopefully) soon...
+
+
+Utilities
+---------
+
+### inpuho
+
+Program `inpuho` eats everything from standard input, ignores keyboard
+interrupts like SIGINT (^C), SIGQUIT (^\) or SIGTSTP (^Z) and spits
+nothing on standard output.
+
+
+Requirements
+------------
+
+- mostly POSIX-compliant (POSIX.1-2008, to be precise) OS, like Linux
+- GNU make
+- C99 compiler, like gcc or clang
+
+
+Building
+--------
+
+Simply run `make` (or `gmake` on BSDs) from project's root directory.
+If you want to see what commands are called under the hood, then run:
+
+    $ make V=1
+
+Building out-of-tree is supported out-of-the-box. Go to your chosen
+build directory and run there:
+
+    $ make -f path/to/pecutils/Makefile
+
+CC, CROSS_COMPILE, CFLAGS and LDFLAGS are respected (but extended in
+the case of CFLAGS with `-std=c99 -D_XOPEN_SOURCE=700 -Wall`), be it
+environment variable or command-line variable.
+
+Mind that if you're doing cross-compilation, then explicitly defined CC
+is expected to include CROSS_COMPILE part in it already.
+
+
+Installation
+------------
+
+Run `make install`. If you don't like defaults, adjust PREFIX
+(/usr/local by default) or BINDIR (${PREFIX}/bin by default):
+
+    $ make install PREFIX=/usr
+
+
+License
+-------
+
+This project is licensed under the terms of the MIT license.
+See LICENSE.MIT for the full text of the license.
