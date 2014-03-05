@@ -14,8 +14,8 @@ Utilities
 ### inpuho
 
 Program `inpuho` eats everything from standard input, ignores keyboard
-interrupts like SIGINT (^C), SIGQUIT (^\) or SIGTSTP (^Z) and spits
-nothing on standard output.
+interrupts like SIGINT (^C), SIGQUIT (^\) or SIGTSTP (^Z), disables
+software control flow (^S, ^Q) and spits nothing on standard output.
 
 
 Requirements

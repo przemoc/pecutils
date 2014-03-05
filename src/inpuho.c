@@ -110,6 +110,8 @@ int main()
  * - ICANON - Enable canonical mode, i.e.
  *   * Input is made available line by line.
  *   * Line editing is enabled.
+ * Input mode flag constants related to terminal interface that we change:
+ * - IXON/IXOFF - Enable XON/XOFF flow control on output.
  * Read termios man page for details.
  */
 
@@ -122,6 +124,7 @@ static void input_hole(int signo)
 	if (istty) {
 		tcgetattr(STDIN_FILENO, &tios);
 		tios.c_lflag &= ~(ICANON | ECHO);
+		tios.c_iflag &= ~(IXON | IXOFF);
 		tcsetattr(STDIN_FILENO, TCSANOW, &tios);
 	}
 }
@@ -134,6 +137,7 @@ static void input_knit(int signo)
 	if (istty) {
 		tcgetattr(STDIN_FILENO, &tios);
 		tios.c_lflag |= ICANON | ECHO;
+		tios.c_iflag |= IXON | IXOFF;
 		tcsetattr(STDIN_FILENO, TCSANOW, &tios);
 	}
 
