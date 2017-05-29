@@ -136,7 +136,7 @@ static void input_knit(int signo)
 {
 	struct termios tios;
 
-	if (istty) {
+	if (istty && signo >= 0) {
 		tcgetattr(STDIN_FILENO, &tios);
 		tios.c_lflag |= ICANON | ECHO;
 		tios.c_iflag |= IXON | IXOFF;
