@@ -23,8 +23,10 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
+#include <errno.h>
 #include <signal.h>
 #include <stdio.h>
+#include <string.h>
 #include <termios.h>
 #include <unistd.h>
 
@@ -102,7 +104,7 @@ main()
 		r = read(STDIN_FILENO, buf, BUFSIZE);
 		if (r <= 0) {
 			if (!terminated && r)
-				perror("inpuho: read");
+				fprintf(stderr, "%s: %s: %s\n", UTILITY, "read", strerror(errno));
 			break;
 		}
 	}
