@@ -34,15 +34,22 @@
 
 
 /* Globals shared with signal handlers */
+
 static volatile sig_atomic_t istty = 0;
 static volatile sig_atomic_t terminated = 0;
 
+
 /* Forward declarations */
-static void input_hole(int signo);
-static void input_knit(int signo);
+
+static void
+input_hole(int signo);
+
+static void
+input_knit(int signo);
 
 
-int main()
+int
+main()
 {
 	char buf[BUFSIZE];
 	struct sigaction sact = { .sa_flags = SA_RESTART, };
@@ -121,7 +128,8 @@ int main()
  */
 
 
-static void input_hole(int signo)
+static void
+input_hole(int signo)
 {
 	UNUSED(signo);
 	struct termios tios;
@@ -135,7 +143,8 @@ static void input_hole(int signo)
 }
 
 
-static void input_knit(int signo)
+static void
+input_knit(int signo)
 {
 	struct termios tios;
 
