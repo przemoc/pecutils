@@ -91,9 +91,7 @@ int main()
 	for (;;) {
 		r = read(STDIN_FILENO, buf, BUFSIZE);
 		if (r <= 0) {
-			if (terminated)
-				dprintf(STDERR_FILENO, "inpuho: Terminated\n");
-			else if (r)
+			if (!terminated && r)
 				perror("inpuho: read");
 			break;
 		}
@@ -101,6 +99,11 @@ int main()
 
 	/* Remove the hole. */
 	input_knit(0);
+
+	signal(SIGTERM, SIG_DFL);
+	/* We should allow parent to know if we terminated because of signal. */
+	if (terminated)
+		kill(getpid(), SIGTERM);
 
 	return 0;
 }
