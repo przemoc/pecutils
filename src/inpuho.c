@@ -81,11 +81,11 @@ int main()
 	sact.sa_handler = input_knit;
 	sigaction(SIGTERM, &sact, NULL);
 
-	/* All is set up, unblock signals. */
-	sigprocmask(SIG_UNBLOCK, &sset, NULL);
-
 	/* Create the hole. */
 	input_hole(0);
+
+	/* All is set up, unblock signals. */
+	sigprocmask(SIG_UNBLOCK, &sset, NULL);
 
 	/* Starveling emerges. */
 	for (;;) {
