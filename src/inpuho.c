@@ -1,7 +1,7 @@
 /*
  *  inpuho  --  input hole  for all your weird needs
  *
- * Copyright (c) 2014 Przemyslaw Pawelczyk <przemoc@gmail.com>
+ * Copyright (c) 2014-2017 Przemyslaw Pawelczyk <przemoc@gmail.com>
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
