@@ -34,8 +34,8 @@
 
 
 /* Globals shared with signal handlers */
-volatile sig_atomic_t istty = 0;
-volatile sig_atomic_t terminated = 0;
+static volatile sig_atomic_t istty = 0;
+static volatile sig_atomic_t terminated = 0;
 
 /* Forward declarations */
 static void input_hole(int signo);
