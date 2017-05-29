@@ -97,8 +97,8 @@ int main()
 		}
 	}
 
-	/* Remove the hole. */
-	input_knit(0);
+	/* Remove the hole unless we are already being terminated. */
+	input_knit(-terminated);
 
 	signal(SIGTERM, SIG_DFL);
 	/* We should allow parent to know if we terminated because of signal. */
