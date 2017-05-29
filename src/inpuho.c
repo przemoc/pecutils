@@ -88,7 +88,7 @@ int main()
 	sigprocmask(SIG_UNBLOCK, &sset, NULL);
 
 	/* Starveling emerges. */
-	for (;;) {
+	for (; !terminated;) {
 		r = read(STDIN_FILENO, buf, BUFSIZE);
 		if (r <= 0) {
 			if (!terminated && r)
