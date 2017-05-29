@@ -61,7 +61,7 @@ int main()
 	/* We won't write anything on given stdout. */
 	close(STDOUT_FILENO);
 
-	/* Block signals that we'll get our own handler. */
+	/* Block signals that will get our own handler. */
 	sigemptyset(&sset);
 	sigaddset(&sset, SIGCONT);
 	sigaddset(&sset, SIGTERM);
@@ -70,18 +70,21 @@ int main()
 	/* We don't want more than one signal handler at time. */
 	sact.sa_mask = sset;
 
-	/* "Show must go on!" */
+	/*
+	 * We have to restore the hole if we are continued.
+	 * User could reset tty while we were stopped.
+	 */
 	sact.sa_handler = input_hole;
 	sigaction(SIGCONT, &sact, NULL);
 
-	/* Until we'll hear "This is the end", that is. */
+	/* We should remove the hole if we are terminated. */
 	sact.sa_handler = input_knit;
 	sigaction(SIGTERM, &sact, NULL);
 
 	/* All is set up, unblock signals. */
 	sigprocmask(SIG_UNBLOCK, &sset, NULL);
 
-	/* Let's drive "Highway to Hell!" */
+	/* Create the hole. */
 	input_hole(0);
 
 	/* Starveling emerges. */
@@ -96,7 +99,7 @@ int main()
 		}
 	}
 
-	/* "Hey, girl, stop what you're doin'!" */
+	/* Remove the hole. */
 	input_knit(0);
 
 	return 0;
