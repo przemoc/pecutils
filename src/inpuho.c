@@ -69,7 +69,6 @@ int main()
 
 	/* We don't want more than one signal handler at time. */
 	sact.sa_mask = sset;
-	sact.sa_flags |= SA_NODEFER;
 
 	/* "Show must go on!" */
 	sact.sa_handler = input_hole;
