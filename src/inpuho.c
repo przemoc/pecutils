@@ -33,6 +33,9 @@
 #define UNUSED(x) (void)(x)
 
 
+const char UTILITY[] = "inpuho";
+
+
 /* Globals shared with signal handlers */
 
 static volatile sig_atomic_t istty = 0;
